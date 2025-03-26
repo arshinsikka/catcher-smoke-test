@@ -1,0 +1,17 @@
+digraph ClassDiagram {
+	Billable [label="<<interface>>
+Billable
++ bill()" shape=interface]
+	Item [label="Item|+ print()" shape=record]
+	StockItem [label="StockItem|+ name: String\n- review: Review|+ StockItem(name: String, rating: Rating)\n+ print()\n+ bill()" shape=record]
+	Inventory [label="Inventory|- items: List<Item>|+ getItemCount(): int\n+ generateBill(b: Billable)\n+ add(s: Item)" shape=record]
+	Review [label="Review|- rating: Rating|+ Review(rating: Rating)" shape=record]
+	Rating [label="<<enumeration>>
+Rating
+GOOD\nOK\nPOOR" shape=enumeration]
+	Item -> Billable [label=implements arrowhead=onormal]
+	StockItem -> Item [label=extends arrowhead=onormal]
+	Inventory -> Item [label="contains *" arrowhead=diamond dir=back]
+	StockItem -> Review [label="has 1" arrowhead=diamond dir=back]
+	Review -> Rating [label="has 1" arrowhead=diamond dir=back]
+}
